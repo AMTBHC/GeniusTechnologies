@@ -1,69 +1,90 @@
 // Función para cargar contenido en el main
 function loadPage(page) {
-    fetch(`views/${page}.html`)
+    const url = `views/${page}.html?v=${new Date().getTime()}`; // Agregar un parámetro único
+    fetch(url)
         .then(response => response.text())
         .then(html => {
+            
             document.getElementById('main-content').innerHTML = html;
-
-            // Ejecutar el JS relacionado con esta página
             runPageScripts(page);
         })
         .catch(err => {
             console.error('Error al cargar la página: ', err);
         });
 }
-
 // Función para cargar el header y footer (si es necesario)
 function loadHeaderAndFooter() {
     fetch('views/templates/header.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar el header');
+            }
+            return response.text();
+        })
         .then(html => {
-            document.getElementById('header').innerHTML = html;
+            const header = document.getElementById('header');
+            if (header) {
+                header.innerHTML = html;
+                
+            } else {
+                console.error("No se encontró el contenedor 'header'");
+            }
         });
 
     fetch('views/templates/footer.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar el footer');
+            }
+            return response.text();
+        })
         .then(html => {
-            document.getElementById('footer').innerHTML = html;
+            const footer = document.getElementById('footer');
+            if (footer) {
+                footer.innerHTML = html;
+            } else {
+                console.error("No se encontró el contenedor 'footer'");
+            }
         });
 }
 
 // Función para ejecutar el JS específico de cada página
 function runPageScripts(page) {
-    // Ejecutar código dependiendo de la página
-    switch(page) {
-        case 'home':
-            // Ejecutar JavaScript específico para home
-            initializeHome();
-            break;
-        case 'about':
-            // Ejecutar JavaScript específico para about
-            initializeAbout();
-            break;
-        case 'services':
-            // Ejecutar JavaScript específico para services
-            initializeServices();
-            break;
-        // Otros casos según necesites
-        case 'portfolio':
-            // Ejecutar JavaScript específico para services
-            initializePortfolio();
-            break;
-
+    try {
+        // Ejecutar código dependiendo de la página
+        switch(page) {
+            case 'home':
+                initializeHome();
+                
+                break;
+            case 'about':
+                initializeAbout();
+                break;
+            case 'services':
+                initializeServices();
+                break;
+            case 'portfolio':
+                initializePortfolio();
+                break;
             case 'contact':
-            // Ejecutar JavaScript específico para services
-            initializeContact();
-            break;
+                initializeContact();
+                break;
+            default:
+                console.warn(`No se encontraron scripts para la página ${page}`);
+        }
+    } catch (error) {
+        console.error(`Error al ejecutar los scripts de la página ${page}: `, error);
     }
 }
+
 
 // Funciones específicas para cada página
 function initializeHome() {
     // Tu lógica para la página home
     console.log("Página Home cargada");
 
-    theme();
     visible();
+    theme();
     metricas();
     textanimate();
     scrolled();
@@ -76,8 +97,8 @@ function initializeHome() {
 function initializeAbout() {
     // Tu lógica para la página about
     console.log("Página About cargada");
-    theme();
     visible();
+    theme();
     carrusel();
     imgnoimg();
     navbarabout()
@@ -89,8 +110,8 @@ function initializeAbout() {
 function initializeServices() {
     // Tu lógica para la página services
     console.log("Página Services cargada");
-    theme();
     visible();
+    theme();
     imgnoimg();
 }
 
@@ -104,20 +125,19 @@ function initializePortfolio() {
 function initializeContact() {
     // Tu lógica para la página services
     console.log("Página Portafolio cargada");
-    theme();
     visible();
+    theme();
     imgnoimg();
 }
 
 
 // Enrutador que maneja los cambios de URL
 function route() {
-    const path = window.location.hash.substr(1) || 'home'; // Si no hay hash, carga 'home'
-    loadHeaderAndFooter();
+    const path = window.location.hash.substr(1) || 'home';
+    loadHeaderAndFooter();  // Cargar siempre el header y footer primero
     loadPage(path);
 }
 
-// Ejecutar la función de enrutamiento cuando se carga la página
 document.addEventListener('DOMContentLoaded', route);
 
 // Manejar cambios de URL cuando cambie el hash
