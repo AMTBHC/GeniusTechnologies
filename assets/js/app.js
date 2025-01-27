@@ -80,31 +80,10 @@ function initializeAbout() {
     visible();
     carrusel();
     imgnoimg();
-    const aboutNavLinks = document.querySelectorAll('#about-nav ul li a');
-
-    // Agregamos un controlador de clic a cada enlace
-    aboutNavLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault(); // Evitar el comportamiento por defecto del enlace
-
-            const sectionId = this.getAttribute('href').substring(1); // Obtener el ID de la sección (sin el #)
-            const section = document.getElementById(sectionId);
-
-            if (section) {
-                const headerHeight = document.querySelector('header')?.offsetHeight || 0; // Altura del header si existe
-                window.scrollTo({
-                    top: section.offsetTop - headerHeight,
-                    behavior: 'smooth'
-                });
-            } else {
-                console.error(`No se encontró una sección con el ID: ${sectionId}`);
-            }
-        });
-    });
+    navbarabout()
+   
 }
 
-// Llamar a initializeAbout al cargar la página
-document.addEventListener('DOMContentLoaded', initializeAbout);
 
 
 function initializeServices() {
@@ -127,6 +106,7 @@ function initializeContact() {
     console.log("Página Portafolio cargada");
     theme();
     visible();
+    imgnoimg();
 }
 
 
@@ -429,4 +409,29 @@ function scrollToSection(event, sectionId) {
     } else {
         console.error(`No se encontró una sección con el ID: ${sectionId}`);
     }
+}
+
+function navbarabout(){
+
+    const aboutNavLinks = document.querySelectorAll('#about-nav ul li a');
+
+    // Agregamos un controlador de clic a cada enlace
+    aboutNavLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Evitar el comportamiento por defecto del enlace
+
+            const sectionId = this.getAttribute('href').substring(1); // Obtener el ID de la sección (sin el #)
+            const section = document.getElementById(sectionId);
+
+            if (section) {
+                const headerHeight = document.querySelector('header')?.offsetHeight || 0; // Altura del header si existe
+                window.scrollTo({
+                    top: section.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            } else {
+                console.error(`No se encontró una sección con el ID: ${sectionId}`);
+            }
+        });
+    });
 }
