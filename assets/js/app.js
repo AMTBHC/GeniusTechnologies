@@ -49,6 +49,11 @@ function runPageScripts(page) {
             // Ejecutar JavaScript específico para services
             initializePortfolio();
             break;
+
+            case 'contact':
+            // Ejecutar JavaScript específico para services
+            initializeContact();
+            break;
     }
 }
 
@@ -116,6 +121,14 @@ function initializePortfolio() {
     theme();
     imgnoimg();
 }
+
+function initializeContact() {
+    // Tu lógica para la página services
+    console.log("Página Portafolio cargada");
+    theme();
+    visible();
+}
+
 
 // Enrutador que maneja los cambios de URL
 function route() {
