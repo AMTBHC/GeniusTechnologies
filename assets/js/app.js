@@ -85,10 +85,10 @@ function initializeHome() {
 
     visible();
     theme();
+    imgnoimg();
+    scrolled();
     metricas();
     textanimate();
-    scrolled();
-    imgnoimg();
     carrusel2();
     
     
