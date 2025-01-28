@@ -246,12 +246,7 @@ transform: rotate(25deg);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para el plugin de comentarios de Facebook */
-.fb-comments {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 2px solid #ddd;
-}
+
 
 
 /* Responsive Design */
@@ -342,12 +337,7 @@ transform: rotate(25deg);
 /* Section Styles */
 
 
-.services, .about, .testimonials, .contact, .redes, .metrics {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-    text-align: center;
-}
+
 
 #about-us {
     display: flex;
@@ -408,10 +398,6 @@ transform: rotate(25deg);
 
 
 
-#redes .red:hover p {
-    transform: scale(1.3); /* Amplía la imagen ligeramente */
-    transition: transform 0.3s ease;
-}
 
 
 .btn-more {
@@ -545,20 +531,49 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 100px;
- 
+    padding: 1rem; /* Añadido para evitar problemas con espacios pequeños */
 }
 
-.red a{
+.red a {
     border-radius: 5px;
     color: #ffffff;
- 
 }
-
 
 .red p {
     margin-bottom: 0.25rem;
     color: #ffffff;
     padding: 2rem;
+}
+
+#redes .red:hover p {
+    transform: scale(1.3); /* Amplía la imagen ligeramente */
+    transition: transform 0.3s ease;
+}
+
+/* Consultas de medios para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .redes {
+        flex-direction: column; /* Cambia a columna para evitar desbordamientos */
+        gap: 2rem;
+        height: auto; /* Ajusta la altura automáticamente */
+        padding: 1.5rem;
+    }
+
+    .red p {
+        padding: 1rem; /* Reduce el padding para pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .redes {
+        gap: 1rem; /* Reduce el espacio entre elementos */
+        padding: 1rem;
+    }
+
+    .red p {
+        font-size: 0.9rem; /* Reduce el tamaño de fuente para textos */
+        padding: 0.5rem; /* Ajusta el padding */
+    }
 }
 
 .cta-section {
@@ -696,8 +711,18 @@ h2 {
         grid-template-columns: 1fr;
     }
 
+
     .metrics {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 2rem;
+        height: auto;
+        padding: 1.5rem;
+        align-items: center;
+    }
+    
+
+    .metrics p {
+        padding: 1rem; /* Reduce el padding para pantallas pequeñas */
     }
 
     .footer-container{
@@ -706,15 +731,7 @@ h2 {
     }
 }
 
-@media (min-width: 1024px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
 
-    .metrics {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 footer {
     background-color: #333; /* Fondo oscuro */
