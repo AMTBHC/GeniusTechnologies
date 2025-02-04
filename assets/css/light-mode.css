@@ -16,14 +16,13 @@ body {
     line-height: 1.6;
   }
   
-
   .loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,20 +37,35 @@ body {
     pointer-events: all;
 }
 
-.loader-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #a860d1;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+.loader-image {
+
+    content: url('../images/logo.png');
+    animation: 
+        float 2s infinite ease-in-out,
+        rotate 4s linear infinite,
+        glow 1.5s infinite alternate,
+        scalePulse 2s infinite ease-in-out;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
 
-@keyframes spin {
+@keyframes rotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-  /* El fondo blanco que ocupa toda la pantalla */
+
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 5px rgb(0, 0, 0)); }
+    50% { filter: drop-shadow(0 0 20px rgb(255, 255, 255)); }
+    100% { filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2)); }
+}
+
+@keyframes scalePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
 
   
   /* El círculo que se mueve */
@@ -1240,6 +1254,7 @@ form button:hover {
     width: 100%;
     border-radius: 8px;
     transition: transform 0.3s ease;
+    filter: hue-rotate(150deg);
 }
 
 .image img:hover {
@@ -1700,7 +1715,7 @@ section h2 {
 
 @media (max-width: 768px) {
     #portfolio {
-      padding: 0 15px;
+      padding: 100px 20px 30px 30px;
     }
   
     .project {

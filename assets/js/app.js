@@ -419,7 +419,7 @@ function imgnoimg(){
     // Lógica de scroll para aplicar la clase 'scrolled' (si aplica)
     window.addEventListener("scroll", () => {
         if (header) {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 1) {
                 header.classList.add("scrolled");
                 menuq.classList.add("scrolled");
             } else {
@@ -521,6 +521,6 @@ function hideLoader() {
     if (loader) {
         setTimeout(() => {
             loader.classList.remove('active');
-        }, 500); // Espera 500ms aunque la carga sea rápida
+        }, 1000); // Espera 1 segundo antes de ocultarlo
     }
 }
