@@ -647,15 +647,33 @@ h2 {
 
 
 
+.about-section p{
+    width: 100%;
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#sustainability{
+
+    padding: auto;
+}
 
 @media (max-width: 768px) {
 
-     #logo-img{
+    .cta {
+        display: none !important;
+      }
+      
+      /* Mostrar CTA en el menú cuando está abierto */
+      .menu.show .cta {
+        display: block !important;
+        width: 90%;
+        margin: 15px auto;
+        text-align: center;
+        order: -1; /* Opcional: posiciona el botón arriba del menú */
+      }
 
-        content: url('../images/logo-dark.png');
-         display: none;
-
- }
 
  .menu {
     display: none;
@@ -697,12 +715,6 @@ h2 {
     }
     .menu.show {
         display: flex;
-    }
-
-    .menu.show #logo-img {
-        display: block;
-        margin: 0 auto 1rem;
-        width: 120px;
     }
 
     .grid-container {
@@ -1262,6 +1274,42 @@ form button:hover {
   }
 }
 
+@media (max-width: 768px) {
+    .values-container {
+      flex-direction: column; /* Apila elementos verticalmente */
+      padding: 0 5%; /* Reduce el padding lateral para pantallas pequeñas */
+      gap: 2rem; /* Reduce el espacio entre elementos */
+    }
+  
+    .text,
+    .values-list {
+      width: 100%; /* Ocupa todo el ancho disponible */
+    }
+  
+    .values-list ul {
+      margin-top: 1rem; /* Reduce el margen superior */
+    }
+  
+    .text {
+      text-align: center; /* Centra el texto en móviles */
+      padding: 0 5%; /* Añade padding para mejor lectura */
+    }
+  
+    .values-list li {
+      font-size: 1rem; /* Reduce ligeramente el tamaño de fuente */
+      justify-content: center; /* Centra elementos en móviles */
+      flex-wrap: wrap; /* Permite que el contenido se ajuste */
+    }
+  
+    .values-list li i {
+      font-size: 1.5rem; /* Reduce el tamaño de íconos */
+    }
+  
+    .values-list li:hover {
+      transform: none; /* Elimina transformación en móviles */
+    }
+  }
+
 .carousel-cont {
     display: flex;
     align-items: center;
@@ -1594,3 +1642,71 @@ section h2 {
     background: rgba(108, 19, 143, 0.8);
 }
 
+@media (max-width: 768px) {
+    #portfolio {
+      padding: 0 15px;
+    }
+  
+    .project {
+      flex-direction: column;
+      margin-bottom: 2rem;
+    }
+  
+    .image-container, 
+    .project-details {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0;
+    }
+  
+    .image-container {
+      margin-bottom: 1.5rem;
+      height: auto;
+      min-height: 250px;
+    }
+  
+    .image-container iframe,
+    .image-container img {
+      height: 250px;
+      object-fit: cover;
+    }
+  
+    .project-details h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+  
+    .project-details p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+  
+    .technologies {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+  
+    .tech-item {
+      margin: 0 5px 5px 0;
+    }
+  
+    .preview-link {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+    }
+  
+    /* Ajustes específicos para videos */
+    .image-container iframe {
+      position: relative;
+      height: 200px;
+    }
+  
+    /* Ajustes de títulos de sección */
+    #portfolio h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }

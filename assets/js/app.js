@@ -185,7 +185,7 @@ function menu(){
     
     const menuIcon = document.querySelector(".menu-icon");
     const menu = document.querySelector(".menu");
-    const logo = document.querySelector("#logo-img");
+    const btn = document.querySelector(".cta");
 
     menuIcon.addEventListener("click", function() {
         // Alternar la clase 'show' en el menú
@@ -193,13 +193,34 @@ function menu(){
 
         // Alternar el display del logo dentro del menú
         if (menu.classList.contains("show")) {
-            menu.prepend(logo); // Mover el logo dentro del menú cuando está abierto
+            menu.prepend(btn); // Mover el logo dentro del menú cuando está abierto
         } else {
-            document.querySelector(".logo").prepend(logo); // Moverlo fuera cuando se cierra el menú
+            document.querySelector(".cta").prepend(btn); // Moverlo fuera cuando se cierra el menú
         }
     }); 
     
 
+}
+
+function menu() {
+    const menuIcon = document.querySelector(".menu-icon");
+    const menu = document.querySelector(".menu");
+    const btn = document.querySelector(".cta");
+    const originalParent = btn.parentElement; // Guardar posición original
+
+    menuIcon.addEventListener("click", function() {
+        menu.classList.toggle("show");
+        
+        if (menu.classList.contains("show")) {
+            // Mover el botón al menú
+            menu.appendChild(btn);
+            btn.style.display = 'block';
+        } else {
+            // Devolver el botón a su posición original
+            originalParent.appendChild(btn);
+            btn.style.display = 'block';
+        }
+    });
 }
 
 function visible(){
