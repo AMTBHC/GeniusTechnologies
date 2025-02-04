@@ -79,7 +79,7 @@ let isInitialLoad = true;
 
 function route() {
     const path = window.location.hash.substr(1) || 'home';
-    
+
     if (isInitialLoad) {
         showLoader(); // Mostrar loader durante la carga inicial
         
@@ -91,7 +91,8 @@ function route() {
                 hideLoader(); // Ocultar después de cargar todo
             });
     } else {
-        loadPage(path); // Loader se maneja dentro de loadPage
+        loadHeaderAndFooter(); // Asegurar que se recargue en cada cambio de ruta
+        loadPage(path);
     }
 }
 
@@ -518,6 +519,8 @@ function showLoader() {
 function hideLoader() {
     const loader = document.getElementById('loader');
     if (loader) {
-        loader.classList.remove('active');
+        setTimeout(() => {
+            loader.classList.remove('active');
+        }, 500); // Espera 500ms aunque la carga sea rápida
     }
 }
