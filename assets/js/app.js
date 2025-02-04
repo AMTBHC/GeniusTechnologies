@@ -205,7 +205,7 @@ function menu(){
 function menu() {
     const menuIcon = document.querySelector(".menu-icon");
     const menu = document.querySelector(".menu");
-    const btn = document.querySelector(".cta");
+    const btn = document.querySelector(".cta-contact");
     const originalParent = btn.parentElement; // Guardar posición original
 
     menuIcon.addEventListener("click", function() {

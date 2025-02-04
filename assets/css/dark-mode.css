@@ -148,6 +148,16 @@ header.no-image .menu li a:hover {
     color: #3498db;
 }
 
+.cta-contact {
+    background-color: #4e24c2;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
 .cta {
     background-color: #4e24c2;
     color: white;
@@ -661,12 +671,12 @@ h2 {
 
 @media (max-width: 768px) {
 
-    .cta {
+    .cta-contact {
         display: none !important;
       }
       
       /* Mostrar CTA en el menú cuando está abierto */
-      .menu.show .cta {
+      .menu.show .cta-contact {
         display: block !important;
         width: 90%;
         margin: 15px auto;
