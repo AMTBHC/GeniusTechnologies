@@ -244,36 +244,6 @@ transform: rotate(25deg);
 }
 
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        width: 200px;
-        gap: 0;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    .menu.visible {
-        display: flex;
-    }
-
-    .menu li {
-        text-align: center;
-        padding: 0.5rem 0;
-    }
-}
-
-
 
 /* Hero Section */
 .hero {
@@ -676,25 +646,47 @@ h2 {
 
 
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        width: 200px;
-        gap: 0;
-    }
 
+
+@media (max-width: 768px) {
+
+     #logo-img{
+
+        content: url('../images/logo-dark.png');
+         display: none;
+
+ }
+
+ .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    gap: 0;
+}
+
+.menu.scrolled {
+    background-color: #000000; /* Fondo blanco al desplazarse */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff; /* Texto negro */
+}
+
+.menu.no-image {
+    background-color: #000000; /* Fondo blanco por defecto */
+    color: #ffffff; /* Texto negro */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
     .menu-icon {
         display: block;
+        font-size: 2rem;
+        cursor: pointer;
     }
-
     .menu.visible {
         display: flex;
     }
@@ -702,6 +694,15 @@ h2 {
     .menu li {
         text-align: center;
         padding: 0.5rem 0;
+    }
+    .menu.show {
+        display: flex;
+    }
+
+    .menu.show #logo-img {
+        display: block;
+        margin: 0 auto 1rem;
+        width: 120px;
     }
 
     .grid-container {
@@ -716,7 +717,7 @@ h2 {
         padding: 1.5rem;
         align-items: center;
     }
-    
+
 
     .metrics p {
         padding: 1rem; /* Reduce el padding para pantallas pequeñas */
@@ -727,6 +728,7 @@ h2 {
         text-align: center;
     }
 }
+
 
 
 

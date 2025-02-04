@@ -85,8 +85,8 @@ function initializeHome() {
 
     visible();
     theme();
+    menu();
     imgnoimg();
-    scrolled();
     metricas();
     textanimate();
     carrusel2();
@@ -99,6 +99,7 @@ function initializeAbout() {
     console.log("Página About cargada");
     visible();
     theme();
+    menu();
     carrusel();
     imgnoimg();
     navbarabout()
@@ -112,6 +113,7 @@ function initializeServices() {
     console.log("Página Services cargada");
     visible();
     theme();
+    menu();
     imgnoimg();
 }
 
@@ -120,6 +122,7 @@ function initializePortfolio() {
     console.log("Página Portafolio cargada");
     theme();
     imgnoimg();
+    menu();
 }
 
 function initializeContact() {
@@ -128,6 +131,7 @@ function initializeContact() {
     visible();
     theme();
     imgnoimg();
+    menu();
 }
 
 
@@ -175,6 +179,27 @@ function theme(){
             localStorage.setItem('theme', 'dark');
         }
     });
+}
+
+function menu(){
+    
+    const menuIcon = document.querySelector(".menu-icon");
+    const menu = document.querySelector(".menu");
+    const logo = document.querySelector("#logo-img");
+
+    menuIcon.addEventListener("click", function() {
+        // Alternar la clase 'show' en el menú
+        menu.classList.toggle("show");
+
+        // Alternar el display del logo dentro del menú
+        if (menu.classList.contains("show")) {
+            menu.prepend(logo); // Mover el logo dentro del menú cuando está abierto
+        } else {
+            document.querySelector(".logo").prepend(logo); // Moverlo fuera cuando se cierra el menú
+        }
+    }); 
+    
+
 }
 
 function visible(){
@@ -338,40 +363,37 @@ function textanimate(){
     observer.observe(ctaSection);
 }
 
-function scrolled(){
 
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-}
 
 function imgnoimg(){
     const hero = document.querySelector(".hero"); // Seleccionamos el hero
     const header = document.querySelector("header"); // Seleccionamos el header
+    const menuq = document.querySelector(".menu"); // Seleccionamos el header
 
     // Si el elemento .hero existe, es porque hay una imagen de fondo
     if (hero) {
         // Si hay imagen de fondo (hero), aseguramos que no tenga la clase 'no-image'
         if (header && header.classList.contains("no-image")) {
             header.classList.remove("no-image");
+            menuq.classList.remove("no-image");
         }
     } else {
         // Si no hay hero (no hay imagen de fondo), agregamos la clase 'no-image' al header
         if (header) {
             header.classList.add("no-image");
+            menuq.classList.add("no-image");
         }
     }
 
     // Lógica de scroll para aplicar la clase 'scrolled' (si aplica)
     window.addEventListener("scroll", () => {
         if (header) {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 10) {
                 header.classList.add("scrolled");
+                menuq.classList.add("scrolled");
             } else {
                 header.classList.remove("scrolled");
+                menuq.classList.remove("scrolled");
             }
         }
     });
