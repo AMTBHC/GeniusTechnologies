@@ -1,15 +1,19 @@
-// Función para cargar contenido en el main
+
 function loadPage(page) {
-    const url = `views/${page}.html?v=${new Date().getTime()}`; // Agregar un parámetro único
+    showLoader(); // Mostrar loader al iniciar
+    
+    const url = `views/${page}.html?v=${new Date().getTime()}`;
     fetch(url)
         .then(response => response.text())
         .then(html => {
-            
             document.getElementById('main-content').innerHTML = html;
             runPageScripts(page);
         })
         .catch(err => {
             console.error('Error al cargar la página: ', err);
+        })
+        .finally(() => {
+            hideLoader(); // Ocultar loader al finalizar (éxito o error)
         });
 }
 // Función para cargar el header y footer (si es necesario)
@@ -71,10 +75,24 @@ function runPageScripts(page) {
     }
 }
 
+let isInitialLoad = true;
+
 function route() {
     const path = window.location.hash.substr(1) || 'home';
-    loadHeaderAndFooter();  // Cargar siempre el header y footer primero
-    loadPage(path);
+    
+    if (isInitialLoad) {
+        showLoader(); // Mostrar loader durante la carga inicial
+        
+        loadHeaderAndFooter()
+            .then(() => loadPage(path))
+            .catch(err => console.error('Error:', err))
+            .finally(() => {
+                isInitialLoad = false;
+                hideLoader(); // Ocultar después de cargar todo
+            });
+    } else {
+        loadPage(path); // Loader se maneja dentro de loadPage
+    }
 }
 
 
@@ -488,4 +506,18 @@ function navbarabout(){
             }
         });
     });
+}
+
+function showLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.classList.add('active');
+    }
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.classList.remove('active');
+    }
 }
