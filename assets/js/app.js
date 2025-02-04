@@ -41,24 +41,6 @@ function loadHeaderAndFooter() {
     return Promise.all([loadHeader, loadFooter]);
 }
 
-let isInitialLoad = true;
-
-function route() {
-    const path = window.location.hash.substr(1) || 'home';
-    
-    if (isInitialLoad) {
-        // Cargar header y footer solo la primera vez
-        loadHeaderAndFooter()
-            .then(() => {
-                loadPage(path);
-                isInitialLoad = false;
-            })
-            .catch(err => console.error('Error:', err));
-    } else {
-        // Cargar solo el contenido de la página
-        loadPage(path);
-    }
-}
 
 // Función para ejecutar el JS específico de cada página
 function runPageScripts(page) {
@@ -88,6 +70,13 @@ function runPageScripts(page) {
         console.error(`Error al ejecutar los scripts de la página ${page}: `, error);
     }
 }
+
+function route() {
+    const path = window.location.hash.substr(1) || 'home';
+    loadHeaderAndFooter();  // Cargar siempre el header y footer primero
+    loadPage(path);
+}
+
 
 
 // Funciones específicas para cada página
