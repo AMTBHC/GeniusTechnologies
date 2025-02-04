@@ -14,38 +14,50 @@ function loadPage(page) {
 }
 // Función para cargar el header y footer (si es necesario)
 function loadHeaderAndFooter() {
-    fetch('views/templates/header.html')
+    // Cargar header
+    const loadHeader = fetch('views/templates/header.html')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al cargar el header');
-            }
+            if (!response.ok) throw new Error('Error al cargar el header');
             return response.text();
         })
         .then(html => {
             const header = document.getElementById('header');
-            if (header) {
-                header.innerHTML = html;
-                
-            } else {
-                console.error("No se encontró el contenedor 'header'");
-            }
+            if (!header) throw new Error("Contenedor 'header' no encontrado");
+            header.innerHTML = html;
         });
 
-    fetch('views/templates/footer.html')
+    // Cargar footer
+    const loadFooter = fetch('views/templates/footer.html')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al cargar el footer');
-            }
+            if (!response.ok) throw new Error('Error al cargar el footer');
             return response.text();
         })
         .then(html => {
             const footer = document.getElementById('footer');
-            if (footer) {
-                footer.innerHTML = html;
-            } else {
-                console.error("No se encontró el contenedor 'footer'");
-            }
+            if (!footer) throw new Error("Contenedor 'footer' no encontrado");
+            footer.innerHTML = html;
         });
+
+    return Promise.all([loadHeader, loadFooter]);
+}
+
+let isInitialLoad = true;
+
+function route() {
+    const path = window.location.hash.substr(1) || 'home';
+    
+    if (isInitialLoad) {
+        // Cargar header y footer solo la primera vez
+        loadHeaderAndFooter()
+            .then(() => {
+                loadPage(path);
+                isInitialLoad = false;
+            })
+            .catch(err => console.error('Error:', err));
+    } else {
+        // Cargar solo el contenido de la página
+        loadPage(path);
+    }
 }
 
 // Función para ejecutar el JS específico de cada página
@@ -70,7 +82,7 @@ function runPageScripts(page) {
                 initializeContact();
                 break;
             default:
-                console.warn(`No se encontraron scripts para la página ${page}`);
+    
         }
     } catch (error) {
         console.error(`Error al ejecutar los scripts de la página ${page}: `, error);
@@ -80,8 +92,6 @@ function runPageScripts(page) {
 
 // Funciones específicas para cada página
 function initializeHome() {
-    // Tu lógica para la página home
-    console.log("Página Home cargada");
 
     visible();
     theme();
@@ -96,7 +106,7 @@ function initializeHome() {
 
 function initializeAbout() {
     // Tu lógica para la página about
-    console.log("Página About cargada");
+
     visible();
     theme();
     menu();
@@ -110,7 +120,7 @@ function initializeAbout() {
 
 function initializeServices() {
     // Tu lógica para la página services
-    console.log("Página Services cargada");
+
     visible();
     theme();
     menu();
@@ -119,7 +129,7 @@ function initializeServices() {
 
 function initializePortfolio() {
     // Tu lógica para la página services
-    console.log("Página Portafolio cargada");
+
     theme();
     imgnoimg();
     menu();
@@ -127,7 +137,7 @@ function initializePortfolio() {
 
 function initializeContact() {
     // Tu lógica para la página services
-    console.log("Página Portafolio cargada");
+
     visible();
     theme();
     imgnoimg();
@@ -135,12 +145,7 @@ function initializeContact() {
 }
 
 
-// Enrutador que maneja los cambios de URL
-function route() {
-    const path = window.location.hash.substr(1) || 'home';
-    loadHeaderAndFooter();  // Cargar siempre el header y footer primero
-    loadPage(path);
-}
+
 
 document.addEventListener('DOMContentLoaded', route);
 
@@ -228,9 +233,7 @@ function visible(){
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            console.log(entry); // Agrega esto para verificar qué secciones están siendo observadas
             if (entry.isIntersecting) {
-                console.log('Sección visible:', entry.target); // Verificar si la sección es visible
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
@@ -257,7 +260,6 @@ function carrusel(){
         prevButton.addEventListener('click', () => {
             carousel.scrollBy({ left: -300, behavior: 'smooth' });
 
-            console.log('se.');
         });
     } else {
         console.error('No se encontraron los elementos del carrusel o los botones.');
@@ -281,13 +283,13 @@ function metricas() {
 
         // Validar si el elemento existe
         if (!element) {
-            console.warn(`Elemento con ID '${elementId}' no encontrado.`);
+       
             return;
         }
 
         // Asegúrate de que 'endValue' no sea cero para evitar una división por cero
         if (endValue === 0) {
-            console.warn(`El valor de '${elementId}' no puede ser 0.`);
+
             return;
         }
 
@@ -409,7 +411,7 @@ function imgnoimg(){
     // Lógica de scroll para aplicar la clase 'scrolled' (si aplica)
     window.addEventListener("scroll", () => {
         if (header) {
-            if (window.scrollY > 10) {
+            if (window.scrollY > 50) {
                 header.classList.add("scrolled");
                 menuq.classList.add("scrolled");
             } else {
