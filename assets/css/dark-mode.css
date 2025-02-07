@@ -1,4 +1,13 @@
-/* Global Styles */
+:root {
+  --accent-color2: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), 
+                  radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), 
+                  radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), 
+                  radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), 
+                  radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), 
+                  radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), 
+                  radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), 
+                  linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+}
 * {
   margin: 0;
   padding: 0;
@@ -263,41 +272,45 @@ header.no-image .menu li a:hover {
 }
 
 .button {
+  background-color: #ffffff;
   padding: 1em 2em;
   border: none;
   border-radius: 5px;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
-  color: #2c9caf;
+  color: #4e24c2;
   transition: all 1000ms;
   font-size: 14px;
   position: relative;
   overflow: hidden;
-  outline: 2px solid #2c9caf;
+  outline: 2px solid #4e24c2;
+  display: inline-block; /* Para que los enlaces y divs respeten el tamaño */
+  text-align: center;
+  text-decoration: none; /* Eliminar subrayado en enlaces */
 }
 
-button.button:hover {
+.button:hover {
   color: #ffffff;
-  transform: scale(1.1);
-  outline: 2px solid #70bdca;
-  box-shadow: 4px 5px 17px -4px #268391;
+  transform: scale(1.01);
+  outline: 2px solid #b194e6;
+  box-shadow: 4px 5px 17px -4px #ffffff;
 }
 
-button.button::before {
+.button::before {
   content: "";
   position: absolute;
   left: -50px;
   top: 0;
   width: 0;
   height: 100%;
-  background-color: #2c9caf;
+  background-color: #4e24c2;
   transform: skewX(45deg);
   z-index: -1;
   transition: width 1000ms;
 }
 
-button.button:hover::before {
+.button:hover::before {
   width: 250%;
 }
 .btn-hero {
@@ -308,19 +321,49 @@ button.button:hover::before {
 
 
 .cta {
-  outline: 2px solid #2c9caf;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-.cta:hover {
-  background-color: #1b1a1a;
+  background-color: #ffffff;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #4e24c2;
+  transition: all 1000ms;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #4e24c2;
+  display: inline-block; /* Para que los enlaces y divs respeten el tamaño */
+  text-align: center;
+  text-decoration: none; /* Eliminar subrayado en enlaces */
 }
 
-#theme-toggle {
+.cta:hover {
+  color: #ffffff;
+  transform: scale(1.01);
+  outline: 2px solid #b194e6;
+  box-shadow: 4px 5px 17px -4px #ffffff;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #4e24c2;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.cta:hover::before {
+  width: 250%;
+}
+
+#cta-toggle {
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -440,14 +483,14 @@ button.button:hover::before {
   z-index: 2;
   display: inline-block;
   padding: 0.75rem 2rem;
-  color: white;
-  border-radius: px;
+  color: #4e24c2;
+  border-radius: 30px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
 }
 
 .hero .cta:hover {
-  background-color: #412bc0;
+  background-color: #462bc0;
+  color: #ffffff;
 }
 
 /* Grid Container */
@@ -586,8 +629,7 @@ h2 {
   width: 100%; /* Los inputs ocupan el ancho completo del contenedor */
 }
 
-#contact-quick input,
-#contact-quick textarea {
+#contact-quick input, textarea, select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -661,11 +703,10 @@ h2 {
 
 /* Consultas de medios para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .redes {
+  .redes, .socials-container {
     flex-direction: column; /* Cambia a columna para evitar desbordamientos */
     gap: 2rem;
     height: auto; /* Ajusta la altura automáticamente */
-    padding: 1.5rem;
   }
 
   .red p {
@@ -729,16 +770,10 @@ h2 {
   margin-top: 1rem;
   display: inline-block;
   padding: 0.75rem 2rem;
-  color: rgb(255, 255, 255);
   border-radius: 5px;
   font-weight: 600;
-  transition: opacity 1s ease, background-color 0.3s ease;
   opacity: 0; /* Inicialmente invisible */
   font-size: 1rem; /* Ajusta el tamaño del botón */
-}
-.cta-section .cta:hover {
-  background-color: #1b1a1a;
-  color: #f4f4f4;
 }
 
 /* Animaciones de escritura */
@@ -923,28 +958,86 @@ footer {
   color: #bbb;
 }
 
-.footer-column a {
-  color: #ffffff;
-  text-decoration: none;
-}
+
 
 .footer-column a:hover {
   text-decoration: none;
 }
 
-.social a {
-  margin-right: 15px;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  transition: transform 0.3s ease; /* Asegúrate de que la transición se aplique a cada enlace */
+a[data-social="Instagram"]:hover {
+  background: var(--accent-color2);
+
 }
 
-/* Efecto hover */
-.social a:hover {
-  transform: scale(1.1);
+a[data-social="Instagram"]::before {
+
+
+  background: var(--accent-color2);
+
+
+
 }
 
+a[data-social="Instagram"]::after {
+  background: var(--accent-color2);
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--accent-color2);
+  transform: translateY(0) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+
+
+}
+
+
+.socials-container{
+  display: flex;
+  gap: 100px;
+}
+.socials-container a{
+  background-color: #4e24c2;
+  padding: 1em;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.socials-container a::before{
+  content: attr(data-social);
+  position: absolute;
+  background-color: var(--accent-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-30px) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+}
+.socials-container a:hover{
+  background-color: var(--accent-color);
+  fill: white;
+}
+
+.socials-container a:hover::before{
+  transform: translateY(-65px) rotate(0);
+  opacity: 1;
+}
+.socials-container a:hover::after{
+  transform: translateY(-42px) rotate(0);
+  opacity: 1;
+}
 .footer-bottom {
   text-align: center;
   font-size: 12px;

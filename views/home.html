@@ -14,21 +14,26 @@
 
     <section id="redes" class="redes hidden">
 
+        <div class="socials-container">
+
         <div class="red">
-            <p><a href="#" class=""><i class="fa-brands fa-linkedin-in fa-2xl"></i></a></p>
+            <p><a data-social="Linkedin" style="--accent-color: rgb(49, 87, 212);" href="#" class=""><i class="fa-brands fa-linkedin-in fa-2xl"></i></a></p>
         </div>
         <div class="red">
-            <p><a href=""><i class="fa-brands fa-instagram fa-2xl"></i></a></p>
+            <p><a data-social="Instagram"  href=""><i class="fa-brands fa-instagram fa-2xl"></i></a></p>
         </div>
         <div class="red">
-            <p><a href=""><i class="fa-brands fa-facebook-f fa-2xl"></i></a></p>
+            <p><a data-social="Facebook" style="--accent-color: rgb(49, 87, 212);" href=""><i class="fa-brands fa-facebook-f fa-2xl"></i></a></p>
         </div>
         <div class="red">
-            <p><a href=""><i class="fa-brands fa-x-twitter fa-2xl"></i></a></p>
+            <p><a data-social="X" style="--accent-color: rgb(0, 0, 0);" href=""><i class="fa-brands fa-x-twitter fa-2xl"></i></a></p>
         </div>
         <div class="red">
-            <p><a href=""><i class="fa-brands fa-youtube fa-2xl"></i></a></p>
+            <p><a data-social="Youtube" style="--accent-color: rgb(240, 12, 12);" href=""><i class="fa-brands fa-youtube fa-2xl"></i></a></p>
         </div>
+
+        </div>
+
     </section>
     <!-- Featured Services Section -->
     <section id="featured-services" class="services">
@@ -40,7 +45,7 @@
             <p class="service-img"><i class="fa-solid fa-code fa-2xl"></i></p>
             <p class="">Creación de aplicaciones personalizadas, desde análisis hasta implementación, optimizando procesos y cumpliendo necesidades específicas de negocio.</p>
             <div class="btn-container">
-                <a href="?page=services#servicedesarrollo" class="btn-more">Ver Más</a>
+                <a href="#services" class="btn-more">Ver Más</a>
             </div>
         </div>
 
@@ -51,7 +56,7 @@
             <p class="">Evaluación exhaustiva de software para garantizar calidad, funcionalidad y confiabilidad, detectando errores antes de la implementación final.</p>
             <div class="btn-container">
 
-                <a href="?page=services#servicefuncionales" class="btn-more">Ver Más</a>
+                <a href="#services" class="btn-more">Ver Más</a>
             </div>
         </div>
 
@@ -61,7 +66,7 @@
             <p class="service-img"><i class="fa-solid fa-desktop fa-2xl"></i></p>
             <p class="">Soluciones adaptadas para gestionar ventas, inventarios y pagos en tiempo real, mejorando la eficiencia operativa en puntos de venta.</p>
             <div class="btn-container">
-                <a href="?page=services#servicedesarrollo" class="btn-more">Ver Más</a>
+                <a href="#services" class="btn-more">Ver Más</a>
             </div>
         </div>
     </section>
@@ -138,6 +143,13 @@
             <input type="text" name="name" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Email" required>
             <textarea name="message" placeholder="Tu Mensaje" required></textarea>
+            <select>
+                <option value="" selected disabled hidden>Asunto</option>
+                <option value="servicios">Solicitud de servicios</option>
+                <option value="Tarbaje">Trabaje con nosotros</option>
+                <option value="Demo">Solicitar Demo</option>
+                <option value="Otro">Otro</option>
+              </select>
             <button type="submit">Enviar</button>
         </form>
         <p>Email: contacto@GTSolutions.com</p>
